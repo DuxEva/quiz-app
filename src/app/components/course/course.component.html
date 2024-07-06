@@ -1,3 +1,6 @@
-<app-quiz-topic></app-quiz-topic>
-<app-course-questions></app-course-questions>
-<app-question-card></app-question-card>
+<app-quiz-topic
+  [quizData]="quizData"
+  (quizSelected)="getSelectedQuizData($event)"
+></app-quiz-topic>
+
+<!-- <app-question-card></app-question-card> -->

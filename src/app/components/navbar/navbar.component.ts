@@ -13,7 +13,7 @@ export class NavbarComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.selectedQuiz) {
-      console.log(this.selectedQuiz, 'navbar');
+      this.selectedQuiz;
     }
   }
 }
