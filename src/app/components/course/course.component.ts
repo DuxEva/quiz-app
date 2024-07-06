@@ -9,6 +9,7 @@ import { QuizDataService } from '../../service/quiz/quiz-data.service';
 })
 export class CourseComponent implements OnInit {
   @Input() quizData: QuizItem[] = [];
+  @Input() selectedQuiz: QuizItem | undefined;
   @Output() quizSelected = new EventEmitter<QuizItem>();
   showImage = false;
 
@@ -20,6 +21,7 @@ export class CourseComponent implements OnInit {
 
   getSelectedQuizData(quiz: QuizItem) {
     this.quizSelected.emit(quiz);
+    this.selectedQuiz = quiz;
   }
 
   getQuizData() {

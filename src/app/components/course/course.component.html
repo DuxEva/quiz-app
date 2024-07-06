@@ -1,6 +1,8 @@
+@if (!selectedQuiz) {
 <app-quiz-topic
   [quizData]="quizData"
   (quizSelected)="getSelectedQuizData($event)"
 ></app-quiz-topic>
-
-<!-- <app-question-card></app-question-card> -->
+}@else{
+<app-course-questions [selectedQuiz]="selectedQuiz"></app-course-questions>
+}
