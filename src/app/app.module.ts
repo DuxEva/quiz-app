@@ -11,6 +11,9 @@ import { StarterComponent } from './components/course-content/starter/starter.co
 import { QuestionComponent } from './components/course-content/question/question.component';
 import { QustionTrackerComponent } from './components/course-content/qustion-tracker/qustion-tracker.component';
 import { ButtonComponent } from './components/button/button.component';
+import { QuestionCardComponent } from './components/question-card/question-card.component';
+import { CourseQuestionsComponent } from './components/course-questions/course-questions.component';
+import { QuizTopicComponent } from './components/quiz-topic/quiz-topic.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ButtonComponent } from './components/button/button.component';
     StarterComponent,
     QuestionComponent,
     QustionTrackerComponent,
-    ButtonComponent
+    ButtonComponent,
+    QuestionCardComponent,
+    CourseQuestionsComponent,
+    QuizTopicComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,13 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { QuizItem } from '../../../types.common';
-import { QuizDataService } from '../../service/quiz/quiz-data.service';
+import { QuizDataService } from '@/app/service/quiz/quiz-data.service';
+import { QuizItem } from '@/types.common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css'],
+  selector: 'app-quiz-topic',
+  templateUrl: './quiz-topic.component.html',
+  styleUrl: './quiz-topic.component.css',
 })
-export class CourseComponent implements OnInit {
+export class QuizTopicComponent implements OnInit {
   @Input() quizData: QuizItem[] = [];
   @Output() quizSelected = new EventEmitter<QuizItem>();
   showImage = false;

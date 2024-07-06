@@ -1,18 +1,3 @@
-@for (item of quizData; track $index) {
-<div
-  class="flex justify-end items-center w-full bg-white-1 dark:bg-dark-1 rounded-2xl shadow-sm mb-8 cursor-pointer transition-all duration-300 hover:shadow-lg"
-  (click)="getSelectedQuizData(item)"
->
-  <div class="flex gap-5 items-center w-[40vw] h-24 rounded-2xl p-2">
-    <div class="grid gap place-content-center w-12 h-12 rounded-lg">
-      <img
-        [src]="item.icon"
-        alt="icon"
-        class="w-10 h-10 object-cover rounded-lg"
-      />
-    </div>
-    <h1 class="w-1/2 text-xl font-bold dark:text-white-1">{{ item.title }}</h1>
-  </div>
-</div>
-}
-<!-- <app-button></app-button> -->
+<app-quiz-topic></app-quiz-topic>
+<app-course-questions></app-course-questions>
+<app-question-card></app-question-card>
