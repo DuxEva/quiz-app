@@ -1,12 +1,29 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { QuizDataService } from '../../service/quiz/quiz-data.service';
+import { QuizItem } from '../../../types.common';
 
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrl: './course.component.css'
+  styleUrl: './course.component.css',
 })
-export class CourseComponent {
+export class CourseComponent implements OnInit {
   @Input()
-  courses = ['course1', 'course2', 'course3', 'course4'];
+  quizData: QuizItem[] = [];
 
+  constructor(private quizDataService: QuizDataService) {}
+
+  ngOnInit() {
+    this.getQuizData();
+  }
+
+  getSelectedQuizData(quiz: QuizItem) {
+    this.quizDataService.getSelectedQuizData(quiz.title);
+    console.log(this.quizData);
+  }
+
+  getQuizData() {
+    this.quizData = this.quizDataService.getQuizData();
+    console.log(this.quizData);
+  }
 }

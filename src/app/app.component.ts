@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemeService } from './service/theme-service.service';
+import { QuizDataService } from './service/quiz/quiz-data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,8 @@ import { ThemeService } from './service/theme-service.service';
 export class AppComponent {
   title = 'quiz-app';
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private quizDataservice: QuizDataService
+  ) {}
 }
