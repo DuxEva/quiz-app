@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
-import { ThemeService } from './service/theme-service.service';
+import { Component, OnInit } from '@angular/core';
 import { QuizDataService } from './service/quiz/quiz-data.service';
+import { QuizItem } from '@/types.common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'quiz-app';
+export class AppComponent implements OnInit {
+  quizData: QuizItem[] = [];
+  selectedQuiz: QuizItem | undefined;
 
-  constructor(
-    private themeService: ThemeService,
-    private quizDataservice: QuizDataService
-  ) {}
+  constructor(private quizDataService: QuizDataService) {}
+
+  ngOnInit() {
+    this.quizData = this.quizDataService.getQuizData();
+  }
+
+  onQuizSelected(quiz: QuizItem) {
+    this.selectedQuiz = quiz;
+  }
 }

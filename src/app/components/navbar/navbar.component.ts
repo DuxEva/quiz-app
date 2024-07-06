@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { QuizDataService } from '@/app/service/quiz/quiz-data.service';
 import { QuizItem } from '../../../types.common';
 
@@ -7,22 +7,16 @@ import { QuizItem } from '../../../types.common';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnChanges {
+  @Input() selectedQuiz: QuizItem | undefined;
   courses: QuizItem[] = [];
 
   constructor(private quizDataService: QuizDataService) {}
 
-  ngOnInit() {
-    this.getQuizData();
-  }
 
-  getQuizData() {
-    console.log(this.courses, 'navbar');
-    return (this.courses = this.quizDataService.getQuizData());
-  }
-
-  getSelectedQuizData(title: string) {
-    const selectedQuiz = this.quizDataService.getSelectedQuizData(title);
-    console.log(selectedQuiz, 'navbar');
+  ngOnChanges() {
+    if (this.selectedQuiz) {
+      console.log(this.selectedQuiz, 'navbar');
+    }
   }
 }

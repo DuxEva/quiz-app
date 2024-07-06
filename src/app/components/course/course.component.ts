@@ -1,15 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { QuizDataService } from '../../service/quiz/quiz-data.service';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { QuizItem } from '../../../types.common';
+import { QuizDataService } from '../../service/quiz/quiz-data.service';
 
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrl: './course.component.css',
+  styleUrls: ['./course.component.css'],
 })
 export class CourseComponent implements OnInit {
-  @Input()
-  quizData: QuizItem[] = [];
+  @Input() quizData: QuizItem[] = [];
+  @Output() quizSelected = new EventEmitter<QuizItem>();
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -18,12 +18,10 @@ export class CourseComponent implements OnInit {
   }
 
   getSelectedQuizData(quiz: QuizItem) {
-    this.quizDataService.getSelectedQuizData(quiz.title);
-    console.log(this.quizData);
+    this.quizSelected.emit(quiz);
   }
 
   getQuizData() {
     this.quizData = this.quizDataService.getQuizData();
-    console.log(this.quizData);
   }
 }

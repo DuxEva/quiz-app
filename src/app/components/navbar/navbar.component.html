@@ -1,17 +1,16 @@
 <div class="w-full h-12">
   <nav class="h-full flex justify-between items-center">
-    <div class="flex gap-8 items-center">
-      <div class="bg-purple-2 p-2 rounded-lg h-12 w-18">
-        <img
-          src="assets/images/icon-accessibility.svg"
-          alt="logo"
-          class="h-full w-full"
-        />
+    <div class="flex gap-3 items-center">
+      @if (selectedQuiz){
+      <div class=" p-2 rounded-lg h-16 w-20 transition-all duration-300">
+        <img [src]="selectedQuiz.icon" alt="logo" class="h-full w-full" />
       </div>
-      <h1 class="text-2xl font-bold text-dark-1 dark:text-white-1">
-        Accessibility
+      <h1 class="text-2xl font-bold text-dark-1 dark:text-white-1 transition-all duration-300">
+        {{ selectedQuiz.title }}
       </h1>
+      }
     </div>
+
     <div class="flex items-center gap-6">
       <div class="dark:hidden">
         <img src="assets/images/icon-sun-dark.svg" alt="logo" class="h-8" />
