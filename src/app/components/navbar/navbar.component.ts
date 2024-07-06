@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { QuizDataService } from '@/app/service/quiz/quiz-data.service';
+import { Component, Input, OnChanges } from '@angular/core';
 import { QuizItem } from '../../../types.common';
 
 @Component({
@@ -9,10 +8,8 @@ import { QuizItem } from '../../../types.common';
 })
 export class NavbarComponent implements OnChanges {
   @Input() selectedQuiz: QuizItem | undefined;
-  courses: QuizItem[] = [];
 
-  constructor(private quizDataService: QuizDataService) {}
-
+  constructor() {}
 
   ngOnChanges() {
     if (this.selectedQuiz) {
