@@ -23,7 +23,7 @@ export class QuestionCardComponent {
   isCorrectOption(option: string): boolean {
     return this.userAnswer !== null && option === this.question?.answer;
   }
-
+  
   isSelectedIncorrectOption(option: string): boolean {
     return (
       this.userAnswer !== null &&
