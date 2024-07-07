@@ -28,7 +28,7 @@ export class QuestionComponent implements OnChanges {
       changes['index'].currentValue !== undefined
     ) {
       this.question = changes['question'].currentValue;
-      this.index = changes['index'].currentValue + 1;
+      this.index = changes['index'].currentValue;
       this.currentQuestionChange.emit(this.index);
     }
   }

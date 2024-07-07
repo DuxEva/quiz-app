@@ -1,7 +1,7 @@
 @if (question) {
 <div class="w-full text-dark-1 dark:text-white-1">
   <p class="italic mb-5">
-    Question {{ index }} of {{ (selectedQuiz?.questions)!.length }}
+    Question {{ index! + 1 }} of {{ (selectedQuiz?.questions)!.length }}
   </p>
   <div class="mb-16 max-sm:mb-4 text-3xl font-bold">
     <p>
