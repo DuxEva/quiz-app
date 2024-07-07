@@ -1,5 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Question } from '@/types.common';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { Question, QuizItem } from '@/types.common';
 
 @Component({
   selector: 'app-question',
@@ -9,18 +16,20 @@ import { Question } from '@/types.common';
 export class QuestionComponent implements OnChanges {
   @Input() question: Question | undefined;
   @Input() index: number | undefined = 0;
+  @Input() selectedQuiz: QuizItem | undefined;
+
   @Output() currentQuestionChange = new EventEmitter<number>();
 
   ngOnChanges(changes: SimpleChanges) {
     if (
       changes['question'] &&
       this.question !== undefined &&
-      this.index !== undefined
+      changes['index'] &&
+      changes['index'].currentValue !== undefined
     ) {
       this.question = changes['question'].currentValue;
       this.index = changes['index'].currentValue + 1;
       this.currentQuestionChange.emit(this.index);
-      console.log('Current Question:', this.question, 'Index:', this.index);
     }
   }
 }

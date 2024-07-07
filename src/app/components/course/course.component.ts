@@ -25,8 +25,7 @@ export class CourseComponent implements OnInit {
     this.quizSelected.emit(quiz);
     this.selectedQuiz = quiz;
     this.questions = quiz.questions;
-    this.updateCurrentQuestion({ question: this.questions[0], index: 0 }); // Set the first question as the current question
-    console.log('Selected questions:', this.questions);
+    this.updateCurrentQuestion({ question: this.questions[0], index: 0 });
   }
 
   getQuizData() {
@@ -36,11 +35,10 @@ export class CourseComponent implements OnInit {
   updateCurrentQuestion(data: { question: Question; index: number }) {
     this.currentQuestion = data.question;
     this.currentQuestionIndex = data.index;
-    console.log(
-      'Current question updated:',
-      this.currentQuestion,
-      'Index:',
-      this.currentQuestionIndex
-    );
+  }
+
+  updateTrackerWidth(index: number) {
+    this.currentQuestionIndex = index;
+    console.log('Tracker Width Updated, Index:', this.currentQuestionIndex);
   }
 }

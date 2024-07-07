@@ -24,6 +24,7 @@ export class CourseQuestionsComponent implements OnChanges {
   userAnswer: boolean | null = null;
   buttonLabel: string = 'Submit Answer';
   showResult = false;
+  marks: number = 0;
 
   constructor() {}
 
@@ -31,7 +32,6 @@ export class CourseQuestionsComponent implements OnChanges {
     if (this.selectedQuiz) {
       this.currentQuestionIndex = 0;
       this.loadCurrentQuestion();
-      console.log('selectedQuiz:', this.selectedQuiz);
     }
   }
 
@@ -45,7 +45,6 @@ export class CourseQuestionsComponent implements OnChanges {
       question: this.currentQuestion!,
       index: this.currentQuestionIndex,
     });
-    console.log('Loaded current question:', this.currentQuestion);
   }
 
   selectOption(option: string) {
@@ -61,6 +60,9 @@ export class CourseQuestionsComponent implements OnChanges {
     if (this.userAnswer === null) {
       // Check the answer and show feedback
       this.userAnswer = this.selectedOption === this.currentQuestion?.answer;
+      if (this.userAnswer) {
+        this.marks++;
+      }
       this.buttonLabel = 'Next Question';
     } else {
       // Move to the next question or show results

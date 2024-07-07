@@ -17,15 +17,42 @@
 </div>
 } -->
 
-<div *ngFor="let option of question?.options; let idx = index" class="flex justify-end items-center w-full text-dark-1 bg-white-1 dark:bg-dark-1 rounded-2xl shadow-sm mb-8 cursor-pointer hover:shadow-lg" (click)="selectOption(option)" [ngClass]="{ 'border-purple-1 border-2': option === selectedOption }">
-  <div class="flex gap-5 items-center w-[40vw] h-20 rounded-2xl p-2">
-    <div class="grid gap place-content-center w-12 h-12 rounded-lg bg-gray-1 dark:bg-white-1">
-      <span class="text-3xl font-bold">{{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[idx] }}</span>
+
+
+<div
+  *ngFor="let option of question?.options; let idx = index"
+  class="flex justify-end items-center w-full text-dark-1 bg-white-1 dark:bg-dark-1 rounded-2xl shadow-sm mb-8 cursor-pointer hover:shadow-lg"
+  (click)="selectOption(option)"
+  [ngClass]="{
+    'border-purple-1 border-2': option === selectedOption,
+    'border-green-500 border-2': isCorrectOption(option) && userAnswer !== null && option === selectedOption,
+    'border-red-500 border-2': isSelectedIncorrectOption(option)
+  }"
+>
+  <div class="flex justify-around items-center">
+    <div class="flex gap-5 items-center w-[40vw] h-20 rounded-2xl p-2">
+      <div
+        class="grid gap place-content-center w-12 h-12 rounded-lg bg-gray-1 dark:bg-white-1"
+      >
+        <span class="text-3xl font-bold">{{
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[idx]
+        }}</span>
+      </div>
+      <h1 class="text-2xl font-bold text-dark-1 dark:text-white-1">
+        {{ option }}
+      </h1>
     </div>
-    <h1 class="text-2xl font-bold text-dark-1 dark:text-white-1">
-      {{ option }}
-    </h1>
+    <div *ngIf="userAnswer !== null">
+      <img
+        *ngIf="isCorrectOption(option)"
+        src="assets/images/icon-correct.svg"
+        alt="Correct"
+      />
+      <img
+        *ngIf="isSelectedIncorrectOption(option)"
+        src="assets/images/icon-incorrect.svg"
+        alt="Incorrect"
+      />
+    </div>
   </div>
 </div>
-
-
