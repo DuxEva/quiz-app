@@ -1,32 +1,18 @@
-<!-- <div class="flex justify-between mt-16 w-full">
-  <div class="w-1/2">
-    @if (!selectedQuiz) {
-    <app-starter></app-starter>
-
-    }@else {
-    <app-question
-      [selectedQuiz]="selectedQuiz"
-    ></app-question>
-    }
-  </div>
-
-  <div class="translation-all duration-300 w-1/2">
-    @if (!selectedQuiz) {
-    <app-quiz-topic
-      [quizData]="quizData"
-      (quizSelected)="getSelectedQuizData($event)"
-    ></app-quiz-topic>
-    }@else{
-    <app-course-questions [selectedQuiz]="selectedQuiz"></app-course-questions>
-    }
-  </div>
-</div> -->
-
 <div class="flex justify-between mt-16 w-full max-md:flex-col max-md:gap-10">
   <div class="w-[47%] max-md:w-full">
-    <app-starter *ngIf="!selectedQuiz"></app-starter>
+    <app-starter *ngIf="!selectedQuiz && !showResult"></app-starter>
+
+    <div *ngIf="showResult" class="w-full text-dark-1 dark:text-white-1">
+      <div class="mb-3">
+        <h1 class="text-7xl max-sm:text-5xl">Quiz completed</h1>
+      </div>
+      <div>
+        <h1 class="text-7xl max-sm:text-5xl font-extrabold">You scored...</h1>
+      </div>
+    </div>
+
     <app-question
-      *ngIf="selectedQuiz"
+      *ngIf="selectedQuiz && !showResult"
       [question]="currentQuestion"
       [index]="currentQuestionIndex"
       [selectedQuiz]="selectedQuiz"
@@ -34,17 +20,45 @@
     ></app-question>
   </div>
   <div class="translation-all duration-300 w-[47%] max-md:w-full">
+    <div class="mt-4 text-dark-1 dark:text-white-1" *ngIf="showResult">
+      <div
+        class="w-full h-72 bg-white-1 dark:bg-dark-1 place-content-center rounded-xl mb-8"
+      >
+        <div
+          class="w-full flex flex-col gap-3 justify-center items-center"
+          *ngIf="selectedQuiz"
+        >
+          <div class="flex gap-5 items-center mb-4">
+            <div class="p-2 rounded-lg h-16 w-20 transition-all duration-300">
+              <img [src]="selectedQuiz.icon" alt="logo" class="h-full w-full" />
+            </div>
+            <h1
+              class="text-2xl font-bold text-dark-1 dark:text-white-1 transition-all duration-300"
+            >
+              {{ selectedQuiz.title }}
+            </h1>
+          </div>
+          <h1 class="text-7xl">{{ marks }}</h1>
+          <p class="text-2xl">out of {{ selectedQuiz.questions.length }}</p>
+        </div>
+      </div>
+      <app-button
+        [label]="'Play Again'"
+        (buttonClick)="resetQuiz()"
+      ></app-button>
+    </div>
+
     <app-quiz-topic
-      *ngIf="!selectedQuiz"
+      *ngIf="!selectedQuiz && !showResult"
       [quizData]="quizData"
       (quizSelected)="getSelectedQuizData($event)"
     ></app-quiz-topic>
     <app-course-questions
-      *ngIf="selectedQuiz"
+      *ngIf="selectedQuiz && !showResult"
       [selectedQuiz]="selectedQuiz"
       (currentQuestionChange)="updateCurrentQuestion($event)"
       (quizReset)="resetQuiz()"
+      (quizCompleted)="completeQuiz($event)"
     ></app-course-questions>
   </div>
 </div>
-

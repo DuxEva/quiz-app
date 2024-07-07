@@ -14,6 +14,8 @@ export class CourseComponent implements OnInit {
   @Output() quizReset = new EventEmitter<void>();
   currentQuestion: Question | undefined;
   currentQuestionIndex: number = 0;
+  showResult: boolean = false;
+  marks: number = 0;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -24,6 +26,8 @@ export class CourseComponent implements OnInit {
   getSelectedQuizData(quiz: QuizItem) {
     this.quizSelected.emit(quiz);
     this.selectedQuiz = quiz;
+    this.showResult = false;
+    this.marks = 0; // Reset marks when a new quiz is selected
     this.updateCurrentQuestion({ question: quiz.questions[0], index: 0 });
   }
 
@@ -40,11 +44,18 @@ export class CourseComponent implements OnInit {
     this.selectedQuiz = undefined;
     this.currentQuestion = undefined;
     this.currentQuestionIndex = 0;
+    this.showResult = false;
+    this.marks = 0; // Reset marks
     this.quizReset.emit();
   }
 
   updateTrackerWidth(index: number) {
     this.currentQuestionIndex = index;
     console.log('Tracker Width Updated, Index:', this.currentQuestionIndex);
+  }
+
+  completeQuiz(marks: number) {
+    this.showResult = true;
+    this.marks = marks; // Set the marks when quiz is completed
   }
 }

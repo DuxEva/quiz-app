@@ -19,6 +19,7 @@ export class CourseQuestionsComponent implements OnChanges {
     index: number;
   }>();
   @Output() quizReset = new EventEmitter<void>();
+  @Output() quizCompleted = new EventEmitter<number>();
   currentQuestionIndex = 0;
   currentQuestion: Question | undefined;
   selectedOption: string | undefined;
@@ -33,6 +34,7 @@ export class CourseQuestionsComponent implements OnChanges {
   ngOnChanges() {
     if (this.selectedQuiz) {
       this.currentQuestionIndex = 0;
+      this.marks = 0; // Reset marks when a new quiz is selected
       this.loadCurrentQuestion();
     }
   }
@@ -72,6 +74,7 @@ export class CourseQuestionsComponent implements OnChanges {
         this.loadCurrentQuestion();
       } else {
         this.showResult = true;
+        this.quizCompleted.emit(this.marks); // Emit the marks when quiz is completed
       }
     }
   }
