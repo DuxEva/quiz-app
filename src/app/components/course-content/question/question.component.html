@@ -3,12 +3,12 @@
   <p class="italic mb-5">
     Question {{ index }} of {{ (selectedQuiz?.questions)!.length }}
   </p>
-  <div class="mb-16 text-3xl font-bold">
+  <div class="mb-16 max-sm:mb-4 text-3xl font-bold">
     <p>
       {{ question.question }}
     </p>
   </div>
-  <div class="mt-16">
+  <div class="mt-16 max-sm:mt-4">
     <app-qustion-tracker [index]="index"></app-qustion-tracker>
   </div>
 </div>

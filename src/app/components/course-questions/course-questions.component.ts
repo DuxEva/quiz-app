@@ -26,6 +26,7 @@ export class CourseQuestionsComponent implements OnChanges {
   buttonLabel: string = 'Submit Answer';
   showResult = false;
   marks: number = 0;
+  isSelected = false;
 
   constructor() {}
 
@@ -54,7 +55,7 @@ export class CourseQuestionsComponent implements OnChanges {
 
   submitOrNext() {
     if (!this.selectedOption && this.userAnswer === null) {
-      console.log('Please select an option before submitting.');
+      this.isSelected = true;
       return;
     }
 
@@ -64,6 +65,7 @@ export class CourseQuestionsComponent implements OnChanges {
         this.marks++;
       }
       this.buttonLabel = 'Next Question';
+      this.isSelected = false;
     } else {
       if (this.currentQuestionIndex < this.selectedQuiz!.questions.length - 1) {
         this.currentQuestionIndex++;

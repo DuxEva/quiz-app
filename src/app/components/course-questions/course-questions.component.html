@@ -6,6 +6,10 @@
     (answerSelected)="selectOption($event)"
   ></app-question-card>
   <app-button [label]="buttonLabel" (buttonClick)="submitOrNext()"></app-button>
+  <div class="flex gap-4 mt-4 items-center justify-center w-full text-red-1" *ngIf="isSelected">
+    <img src="assets/images/icon-incorrect.svg" alt="">
+    <p class=" text-lg">Please select an answer</p>
+  </div>
 </div>
 <div class="mt-4 text-dark-1 dark:text-white-1" *ngIf="showResult">
   <div
