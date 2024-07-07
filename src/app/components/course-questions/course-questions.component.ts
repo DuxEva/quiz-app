@@ -18,6 +18,7 @@ export class CourseQuestionsComponent implements OnChanges {
     question: Question;
     index: number;
   }>();
+  @Output() quizReset = new EventEmitter<void>();
   currentQuestionIndex = 0;
   currentQuestion: Question | undefined;
   selectedOption: string | undefined;
@@ -58,14 +59,12 @@ export class CourseQuestionsComponent implements OnChanges {
     }
 
     if (this.userAnswer === null) {
-      // Check the answer and show feedback
       this.userAnswer = this.selectedOption === this.currentQuestion?.answer;
       if (this.userAnswer) {
         this.marks++;
       }
       this.buttonLabel = 'Next Question';
     } else {
-      // Move to the next question or show results
       if (this.currentQuestionIndex < this.selectedQuiz!.questions.length - 1) {
         this.currentQuestionIndex++;
         this.loadCurrentQuestion();
@@ -75,11 +74,15 @@ export class CourseQuestionsComponent implements OnChanges {
     }
   }
 
-  isOptionCorrect(option: string): boolean {
-    return !!this.userAnswer && option === this.currentQuestion?.answer;
-  }
-
-  isOptionSelected(option: string): boolean {
-    return this.selectedOption === option;
+  tryAgain() {
+    this.currentQuestionIndex = 0;
+    this.marks = 0;
+    this.showResult = false;
+    this.selectedOption = undefined;
+    this.userAnswer = null;
+    this.buttonLabel = 'Submit Answer';
+    this.selectedQuiz = undefined;
+    this.currentQuestion = undefined;
+    this.quizReset.emit();
   }
 }

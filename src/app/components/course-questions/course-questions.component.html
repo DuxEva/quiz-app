@@ -1,36 +1,3 @@
-<!-- @if(currentQuestion && !showResult) {
-<div>
-  <app-question-card
-    [question]="currentQuestion"
-    [selectedOption]="selectedOption"
-    [userAnswer]="userAnswer || false"
-    (answerSelected)="selectOption($event)"
-  ></app-question-card>
-
-  <app-button [label]="buttonLabel" (buttonClick)="submitOrNext()"></app-button>
-</div>
-}@else {
-<div class="mt-4 text-dark-1 dark:text-white-1">
-  <div class="w-60 h-60 bg-white-1 dark:bg-dark-1 grid place-content-center">
-    @if (selectedQuiz){
-    <div class="flex gap-5 items-center mb-4">
-      <div class="p-2 rounded-lg h-16 w-20 transition-all duration-300">
-        <img [src]="selectedQuiz.icon" alt="logo" class="h-full w-full" />
-      </div>
-      <h1
-        class="text-2xl font-bold text-dark-1 dark:text-white-1 transition-all duration-300"
-      >
-        {{ selectedQuiz.title }}
-      </h1>
-    </div>
-
-    <h1 class="text-6xl">{{ marks }}</h1>
-    <p>out of {{ selectedQuiz.questions.length }}</p>
-    }
-  </div>
-</div>
-} -->
-
 <div *ngIf="currentQuestion && !showResult">
   <app-question-card
     [question]="currentQuestion"
@@ -38,12 +5,11 @@
     [userAnswer]="userAnswer"
     (answerSelected)="selectOption($event)"
   ></app-question-card>
-
   <app-button [label]="buttonLabel" (buttonClick)="submitOrNext()"></app-button>
 </div>
 <div class="mt-4 text-dark-1 dark:text-white-1" *ngIf="showResult">
   <div
-    class="w-72 h-72 bg-white-1 dark:bg-dark-1 place-content-center rounded-xl"
+    class="w-full h-72 bg-white-1 dark:bg-dark-1 place-content-center rounded-xl mb-8"
   >
     <div
       class="w-full flex flex-col gap-3 justify-center items-center"
@@ -63,4 +29,5 @@
       <p class="text-2xl">out of {{ selectedQuiz.questions.length }}</p>
     </div>
   </div>
+  <app-button [label]="'Play Again'" (buttonClick)="tryAgain()"></app-button>
 </div>

@@ -10,10 +10,9 @@ import { QuizDataService } from '../../service/quiz/quiz-data.service';
 export class CourseComponent implements OnInit {
   @Input() quizData: QuizItem[] = [];
   @Input() selectedQuiz: QuizItem | undefined;
-  @Input() questions: Question[] = [];
   @Output() quizSelected = new EventEmitter<QuizItem>();
   currentQuestion: Question | undefined;
-  currentQuestionIndex: number | undefined;
+  currentQuestionIndex: number = 0;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -24,8 +23,7 @@ export class CourseComponent implements OnInit {
   getSelectedQuizData(quiz: QuizItem) {
     this.quizSelected.emit(quiz);
     this.selectedQuiz = quiz;
-    this.questions = quiz.questions;
-    this.updateCurrentQuestion({ question: this.questions[0], index: 0 });
+    this.updateCurrentQuestion({ question: quiz.questions[0], index: 0 });
   }
 
   getQuizData() {
@@ -35,6 +33,12 @@ export class CourseComponent implements OnInit {
   updateCurrentQuestion(data: { question: Question; index: number }) {
     this.currentQuestion = data.question;
     this.currentQuestionIndex = data.index;
+  }
+
+  resetQuiz() {
+    this.selectedQuiz = undefined;
+    this.currentQuestion = undefined;
+    this.currentQuestionIndex = 0;
   }
 
   updateTrackerWidth(index: number) {
