@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Question } from '@/types.common';
 
 @Component({
@@ -9,6 +9,7 @@ import { Question } from '@/types.common';
 export class QuestionComponent implements OnChanges {
   @Input() question: Question | undefined;
   @Input() index: number | undefined = 0;
+  @Output() currentQuestionChange = new EventEmitter<number>();
 
   ngOnChanges(changes: SimpleChanges) {
     if (
@@ -18,6 +19,7 @@ export class QuestionComponent implements OnChanges {
     ) {
       this.question = changes['question'].currentValue;
       this.index = changes['index'].currentValue + 1;
+      this.currentQuestionChange.emit(this.index);
       console.log('Current Question:', this.question, 'Index:', this.index);
     }
   }

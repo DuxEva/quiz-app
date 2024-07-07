@@ -23,7 +23,7 @@
 </div> -->
 
 <div class="flex justify-between mt-16 w-full">
-  <div class="w-1/2">
+  <div class="w-[47%]">
     <app-starter *ngIf="!selectedQuiz"></app-starter>
     <app-question
       *ngIf="selectedQuiz"
@@ -32,7 +32,7 @@
     ></app-question>
   </div>
 
-  <div class="translation-all duration-300 w-1/2">
+  <div class="translation-all duration-300">
     <app-quiz-topic
       *ngIf="!selectedQuiz"
       [quizData]="quizData"
