@@ -1,4 +1,4 @@
-<div
+<!-- <div
   class="flex justify-center w-full p-12 h-screen bg-gray-1 dark:bg-dark-2 transition-all duration-300 bg-[url('/assets/images/pattern-background-desktop-light.svg')] dark:bg-[url('/assets/images/pattern-background-desktop-dark.svg')] bg-cover bg-center"
 >
   <div class="w-[85vw]">
@@ -12,5 +12,21 @@
         (quizSelected)="onQuizSelected($event)"
       ></app-course>
     </div>
+    <div class="w-full mt-10">
+      <app-question [selectedQuiz]="selectedQuiz"></app-question>
+    </div>
+  </div>
+</div> -->
+
+<div class="flex justify-center w-full p-12 h-screen bg-gray-1 dark:bg-dark-2 transition-all duration-300 bg-[url('/assets/images/pattern-background-desktop-light.svg')] dark:bg-[url('/assets/images/pattern-background-desktop-dark.svg')] bg-cover bg-center">
+  <div class="w-[85vw]">
+    <app-navbar [selectedQuiz]="selectedQuiz"></app-navbar>
+    <div class="flex justify-between mt-16 w-full">
+      <app-course
+        [quizData]="quizData"
+        (quizSelected)="onQuizSelected($event)"
+      ></app-course>
+    </div>
   </div>
 </div>
+

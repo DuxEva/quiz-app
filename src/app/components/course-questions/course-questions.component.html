@@ -1,19 +1,5 @@
-<!-- <div *ngIf="currentQuestion">
-  <app-question-card
-    [question]="currentQuestion"
-    [selectedOption]="selectedOption"
-    [userAnswer]="userAnswer || false"
-    (answerSelected)="selectOption($event)"
-  ></app-question-card>
-
-  <app-button [label]="buttonLabel" (buttonClick)="submitAnswer()"></app-button>
-</div>
-
-<div *ngIf="showResult" class="mt-4">
-  <p>Quiz Complete! Show results here.</p>
-</div> -->
-
-<div *ngIf="currentQuestion">
+@if (currentQuestion) {
+<div>
   <app-question-card
     [question]="currentQuestion"
     [selectedOption]="selectedOption"
@@ -23,8 +9,7 @@
 
   <app-button [label]="buttonLabel" (buttonClick)="submitOrNext()"></app-button>
 </div>
-
+}
 <div *ngIf="showResult" class="mt-4">
   <p>Quiz Complete! Show results here.</p>
 </div>
-
