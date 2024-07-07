@@ -11,6 +11,7 @@ export class CourseComponent implements OnInit {
   @Input() quizData: QuizItem[] = [];
   @Input() selectedQuiz: QuizItem | undefined;
   @Output() quizSelected = new EventEmitter<QuizItem>();
+  @Output() quizReset = new EventEmitter<void>();
   currentQuestion: Question | undefined;
   currentQuestionIndex: number = 0;
 
@@ -39,6 +40,7 @@ export class CourseComponent implements OnInit {
     this.selectedQuiz = undefined;
     this.currentQuestion = undefined;
     this.currentQuestionIndex = 0;
+    this.quizReset.emit();
   }
 
   updateTrackerWidth(index: number) {

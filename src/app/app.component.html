@@ -18,6 +18,18 @@
   </div>
 </div> -->
 
+<!-- <div class="flex justify-center w-full p-12 h-screen bg-gray-1 dark:bg-dark-2 transition-all duration-300 bg-[url('/assets/images/pattern-background-desktop-light.svg')] dark:bg-[url('/assets/images/pattern-background-desktop-dark.svg')] bg-cover bg-center">
+  <div class="w-[85vw]">
+    <app-navbar [selectedQuiz]="selectedQuiz"></app-navbar>
+    <div class="mt-16 w-full">
+      <app-course
+        [quizData]="quizData"
+        (quizSelected)="onQuizSelected($event)"
+      ></app-course>
+    </div>
+  </div>
+</div> -->
+
 <div class="flex justify-center w-full p-12 h-screen bg-gray-1 dark:bg-dark-2 transition-all duration-300 bg-[url('/assets/images/pattern-background-desktop-light.svg')] dark:bg-[url('/assets/images/pattern-background-desktop-dark.svg')] bg-cover bg-center">
   <div class="w-[85vw]">
     <app-navbar [selectedQuiz]="selectedQuiz"></app-navbar>
@@ -25,6 +37,7 @@
       <app-course
         [quizData]="quizData"
         (quizSelected)="onQuizSelected($event)"
+        (quizReset)="onQuizReset()"
       ></app-course>
     </div>
   </div>

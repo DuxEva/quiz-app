@@ -1,14 +1,16 @@
 <div class="w-full h-12">
   <nav class="h-full flex justify-between items-center">
     <div class="flex gap-3 items-center">
-      @if (selectedQuiz){
-      <div class=" p-2 rounded-lg h-16 w-20 transition-all duration-300">
-        <img [src]="selectedQuiz.icon" alt="logo" class="h-full w-full" />
+      <div *ngIf="selectedQuiz" class="flex gap-3 items-center">
+        <div class="p-2 rounded-lg h-16 w-20 transition-all duration-300">
+          <img [src]="selectedQuiz.icon" alt="logo" class="h-full w-full" />
+        </div>
+        <h1
+          class="text-2xl font-bold text-dark-1 dark:text-white-1 transition-all duration-300"
+        >
+          {{ selectedQuiz.title }}
+        </h1>
       </div>
-      <h1 class="text-2xl font-bold text-dark-1 dark:text-white-1 transition-all duration-300">
-        {{ selectedQuiz.title }}
-      </h1>
-      }
     </div>
 
     <div class="flex items-center gap-6">
