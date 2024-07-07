@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { QuizItem, Question } from '@/types.common';
 
 @Component({
@@ -8,10 +14,14 @@ import { QuizItem, Question } from '@/types.common';
 })
 export class CourseQuestionsComponent implements OnChanges {
   @Input() selectedQuiz: QuizItem | undefined;
+  @Output() currentQuestionChange = new EventEmitter<{
+    question: Question;
+    index: number;
+  }>();
   currentQuestionIndex = 0;
   currentQuestion: Question | undefined;
   selectedOption: string | undefined;
-  userAnswer: boolean | null = null; // Use null to distinguish between answered and not answered
+  userAnswer: boolean | null = null;
   buttonLabel: string = 'Submit Answer';
   showResult = false;
 
@@ -21,6 +31,7 @@ export class CourseQuestionsComponent implements OnChanges {
     if (this.selectedQuiz) {
       this.currentQuestionIndex = 0;
       this.loadCurrentQuestion();
+      console.log('selectedQuiz:', this.selectedQuiz);
     }
   }
 
@@ -28,8 +39,13 @@ export class CourseQuestionsComponent implements OnChanges {
     this.currentQuestion =
       this.selectedQuiz?.questions[this.currentQuestionIndex];
     this.selectedOption = undefined;
-    this.userAnswer = null; // Reset userAnswer to null when loading new question
+    this.userAnswer = null;
     this.buttonLabel = 'Submit Answer';
+    this.currentQuestionChange.emit({
+      question: this.currentQuestion!,
+      index: this.currentQuestionIndex,
+    });
+    console.log('Loaded current question:', this.currentQuestion);
   }
 
   selectOption(option: string) {

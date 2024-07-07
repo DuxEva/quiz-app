@@ -1,28 +1,14 @@
-<!-- <div class="w-full text-dark-1 dark:text-white-1">
-  <P class="italic mb-5">Question 6 of 10</P>
+@if (question) {
+<div class="w-full text-dark-1 dark:text-white-1">
+  <P class="italic mb-5">Question {{ index }} of 10</P>
   <div class="mb-16 text-3xl font-bold">
     <p>
-      Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA
-      requirement for normal text?
+      {{ question.question }}
     </p>
   </div>
   <div class="mt-16">
-    <app-qustion-tracker></app-qustion-tracker>
-  </div>
-</div> -->
-
-<div *ngIf="currentQuestion">
-  <p class="italic mb-5">
-    Question {{ currentQuestionIndex + 1 }} of
-    {{ selectedQuiz?.questions?.length || 0 }}
-  </p>
-  <div class="mb-16 text-3xl font-bold">
-    <p>{{ currentQuestion.question }}</p>
-  </div>
-  <div class="mt-16">
-    <app-question-card
-      [question]="currentQuestion"
-      (answerSelected)="onAnswerSelected($event)"
-    ></app-question-card>
+    <app-qustion-tracker cl
+    ></app-qustion-tracker>
   </div>
 </div>
+}

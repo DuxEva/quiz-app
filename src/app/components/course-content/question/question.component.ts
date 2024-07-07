@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { QuizItem, Question } from '@/types.common';
+import { Question } from '@/types.common';
 
 @Component({
   selector: 'app-question',
@@ -7,41 +7,18 @@ import { QuizItem, Question } from '@/types.common';
   styleUrls: ['./question.component.css'],
 })
 export class QuestionComponent implements OnChanges {
-  @Input() selectedQuiz: QuizItem | undefined;
-  currentQuestionIndex = 0;
-  currentQuestion: Question | undefined;
+  @Input() question: Question | undefined;
+  @Input() index: number = 0;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['selectedQuiz'] && this.selectedQuiz) {
-      this.currentQuestionIndex = 0;
-      this.loadCurrentQuestion();
-    }
-  }
-
-  loadCurrentQuestion() {
-    this.currentQuestion =
-      this.selectedQuiz!.questions[this.currentQuestionIndex];
-      console.log('Current question:', this.currentQuestion)
-  }
-
-  nextQuestion() {
     if (
-      this.selectedQuiz &&
-      this.currentQuestionIndex < this.selectedQuiz.questions.length - 1
+      changes['question'] &&
+      this.question !== undefined &&
+      this.index !== undefined
     ) {
-      this.currentQuestionIndex++;
-      this.loadCurrentQuestion();
+      this.question = changes['question'].currentValue;
+      this.index = changes['index'].currentValue + 1;
+      console.log('Current Question:', this.question, 'Index:', this.index);
     }
-  }
-
-  previousQuestion() {
-    if (this.currentQuestionIndex > 0) {
-      this.currentQuestionIndex--;
-      this.loadCurrentQuestion();
-    }
-  }
-
-  onAnswerSelected(option: string) {
-    console.log('Selected option:', option);
   }
 }

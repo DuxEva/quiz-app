@@ -1,9 +1,16 @@
-<div class="flex justify-between mt-16 w-full">
+<!-- <div class="flex justify-between mt-16 w-full">
   <div class="w-1/2">
-    <app-course-content></app-course-content>
+    @if (!selectedQuiz) {
+    <app-starter></app-starter>
+
+    }@else {
+    <app-question
+      [selectedQuiz]="selectedQuiz"
+    ></app-question>
+    }
   </div>
 
-  <div class="translation-all duration-300">
+  <div class="translation-all duration-300 w-1/2">
     @if (!selectedQuiz) {
     <app-quiz-topic
       [quizData]="quizData"
@@ -12,5 +19,29 @@
     }@else{
     <app-course-questions [selectedQuiz]="selectedQuiz"></app-course-questions>
     }
+  </div>
+</div> -->
+
+<div class="flex justify-between mt-16 w-full">
+  <div class="w-1/2">
+    <app-starter *ngIf="!selectedQuiz"></app-starter>
+    <app-question
+      *ngIf="selectedQuiz"
+      [question]="currentQuestion"
+      [index]="currentQuestionIndex"
+    ></app-question>
+  </div>
+
+  <div class="translation-all duration-300 w-1/2">
+    <app-quiz-topic
+      *ngIf="!selectedQuiz"
+      [quizData]="quizData"
+      (quizSelected)="getSelectedQuizData($event)"
+    ></app-quiz-topic>
+    <app-course-questions
+      *ngIf="selectedQuiz"
+      [selectedQuiz]="selectedQuiz"
+      (currentQuestionChange)="updateCurrentQuestion($event)"
+    ></app-course-questions>
   </div>
 </div>
