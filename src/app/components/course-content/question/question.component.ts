@@ -8,7 +8,7 @@ import { Question } from '@/types.common';
 })
 export class QuestionComponent implements OnChanges {
   @Input() question: Question | undefined;
-  @Input() index: number = 0;
+  @Input() index: number | undefined = 0;
 
   ngOnChanges(changes: SimpleChanges) {
     if (
