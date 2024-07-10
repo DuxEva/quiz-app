@@ -11,8 +11,7 @@ export class QustionTrackerComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['index'] && this.index !== undefined) {
-      this.width = `${(this.index + 1 ) * 10}%`;
-      console.log('Tracker Width:', this.width);
+      this.width = `${(this.index + 1) * 10}%`;
     }
   }
 }

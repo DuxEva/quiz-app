@@ -51,7 +51,6 @@ export class CourseComponent implements OnInit {
 
   updateTrackerWidth(index: number) {
     this.currentQuestionIndex = index;
-    console.log('Tracker Width Updated, Index:', this.currentQuestionIndex);
   }
 
   completeQuiz(marks: number) {
