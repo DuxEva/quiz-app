@@ -57,7 +57,7 @@ describe('QuizTopicComponent', () => {
     const quiz = mockQuizData[0];
     jest.spyOn(component.quizSelected, 'emit');
 
-    component.getSelectedQuizData(quiz);
+    component.emitSelectedQuizData(quiz);
 
     expect(component.quizSelected.emit).toHaveBeenCalledWith(quiz);
   });
