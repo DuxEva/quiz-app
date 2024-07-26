@@ -1,15 +1,18 @@
-<div class="flex justify-between mt-16 max-md:12 max-sm:mt-8 w-full max-md:flex-col max-md:gap-10">
+<div
+  class="flex justify-between mt-16 max-md:12 max-sm:mt-8 w-full max-md:flex-col max-md:gap-10"
+>
   <div class="w-[47%] max-md:w-full">
-    <app-starter *ngIf="!selectedQuiz && !showResult"></app-starter>
-
-    <div *ngIf="showResult" class="w-full text-dark-1 dark:text-white-1">
-      <div class="mb-3">
-        <h1 class="text-7xl max-sm:text-5xl">Quiz completed</h1>
-      </div>
-      <div>
-        <h1 class="text-7xl max-sm:text-5xl font-extrabold">You scored...</h1>
-      </div>
-    </div>
+    <app-starter
+      *ngIf="!selectedQuiz && !showResult"
+      [title]="'Welcome to the Quiz'"
+      [subtitle]="'Frontend Quiz!'"
+      [getStarted]="'Get Started'"
+    ></app-starter>
+    <app-starter
+      *ngIf="showResult"
+      [title]="'Quiz completed'"
+      [subtitle]="'You scored...'"
+    ></app-starter>
 
     <app-question
       *ngIf="selectedQuiz && !showResult"

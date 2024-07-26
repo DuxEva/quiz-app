@@ -61,7 +61,7 @@ export class CourseQuestionsComponent implements OnChanges {
       return;
     }
 
-    if (this.userAnswer === null) {
+    if (this.userAnswer === null && this.selectedOption) {
       this.userAnswer = this.selectedOption === this.currentQuestion?.answer;
       if (this.userAnswer) {
         this.marks++;

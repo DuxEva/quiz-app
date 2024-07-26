@@ -1,9 +1,10 @@
 <div class="w-full text-dark-1 dark:text-white-1">
   <div class="mb-3">
-    <h1 class="text-7xl max-sm:text-5xl">Welcome to the</h1>
+    <h1 class="text-7xl max-sm:text-5xl">{{ title }}</h1>
   </div>
   <div>
-    <h1 class="text-7xl max-sm:text-5xl font-extrabold">Frontend Quiz!</h1>
+    <h1 class="text-7xl max-sm:text-5xl font-extrabold">{{ subtitle }}</h1>
   </div>
-  <P class="mt-14 max-md:mt-4 italic">Pick a subject to get started.</P>
+
+  <P class="mt-14 max-md:mt-4 italic" *ngIf="getStarted">{{ getStarted }}</P>
 </div>

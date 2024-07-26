@@ -18,7 +18,7 @@ export class QuizTopicComponent implements OnInit {
     this.getQuizData();
   }
 
-  getSelectedQuizData(quiz: QuizItem) {
+  emitSelectedQuizData(quiz: QuizItem) {
     this.quizSelected.emit(quiz);
   }
 

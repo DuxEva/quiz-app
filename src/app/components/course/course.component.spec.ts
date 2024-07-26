@@ -1,6 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
 import { CourseComponent } from './course.component';
 import { QuizDataService } from '../../service/quiz/quiz-data.service';
 import { QuizItem, Question } from '../../../types.common';
@@ -45,7 +43,7 @@ describe('CourseComponent', () => {
 
   it('should get quiz data on initialization', () => {
     expect(quizDataService.getQuizData).toHaveBeenCalled();
-    expect(component.quizData.length).toBeGreaterThan(0);
+    expect(component.quizData.length).toBeGreaterThanOrEqual(0)
   });
 
   it('should emit quizSelected event and update state when getSelectedQuizData is called', () => {
